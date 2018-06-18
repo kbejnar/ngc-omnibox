@@ -413,9 +413,11 @@ export default class NgcOmniboxController {
       this.onChosen({choice: item, $event, omnibox: this});
       !$event.isDefaultPrevented && $event.performDefault();
 
-      this.query = '';
       shouldFocusField && this.focus();
-      this.hideSuggestions = true;
+      if (this.hideOnChosen === false) {
+        this.query = '';
+        this.hideSuggestions = true;
+      }
     }
   }
 
